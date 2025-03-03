@@ -60,11 +60,11 @@ Determine the optimal encoding techniques for IP addresses and protocol data acr
 
 ## Experimental Design
 ### Algorithm Selection
-- Logistic Regression (baseline)
-- SVM (with different kernels)
-- Neural Networks (test different architectures)
-- Random Forest (vary depth and estimators)
-- Naive Bayes (Gaussian and Multinomial)
+- Logistic Regression (baseline) using GLM.jl
+- SVM (with different kernels) using LIBSVM.jl
+- Neural Networks using Flux.jl (test different architectures)
+- Random Forest (vary depth and estimators) using DecisionTree.jl
+- Naive Bayes (Gaussian and Multinomial) using NaiveBayes.jl
 
 ### Hyperparameter Tuning
 - Grid search for optimal parameters for each algorithm
@@ -78,9 +78,10 @@ Determine the optimal encoding techniques for IP addresses and protocol data acr
 
 ## Implementation Plan
 ### Phase 1: Baseline Testing
-- Implement all encoding techniques
+- Implement all encoding techniques using Julia's type system
 - Run quick tests with default parameters
 - Identify promising combinations
+- Use Julia's multiple dispatch for flexible algorithm implementation
 
 ### Phase 2: In-depth Analysis
 - Focus on top-performing encoding-algorithm pairs
@@ -117,14 +118,17 @@ Determine the optimal encoding techniques for IP addresses and protocol data acr
 git clone https://github.com/username/ip-encoding-research.git
 cd ip-encoding-research
 
-# Install dependencies
-pip install -r requirements.txt
+# Start Julia and activate the project
+julia --project=.
+
+# Install dependencies (from Julia REPL)
+julia> import Pkg; Pkg.instantiate()
 
 # Run baseline experiments
-python src/run_baseline.py
+julia> include("src/run_baseline.jl")
 
 # Generate visualizations
-python src/generate_charts.py
+julia> include("src/generate_charts.jl")
 ```
 
 ## Project Structure
@@ -133,18 +137,19 @@ ip-encoding-research/
 ├── data/
 │   ├── raw/              # Original datasets
 │   └── processed/        # Preprocessed datasets
-├── notebooks/            # Exploratory analysis notebooks
+├── notebooks/            # Exploratory analysis Pluto notebooks
 ├── results/              # Results and visualizations
 ├── src/                  # Source code
 │   ├── encoders/         # IP and protocol encoding implementations
 │   ├── models/           # ML model implementations
 │   └── utils/            # Helper functions
-├── README.md             # This file
-└── requirements.txt      # Project dependencies
+├── Project.toml          # Julia project dependencies
+├── Manifest.toml         # Julia package versions
+└── README.md             # This file
 ```
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License 
 
 ## Contact
-For any questions or suggestions, please open an issue or contact [your-email@example.com].
+For any questions or suggestions, please open an issue or contact [marlvingore.edu@gmail.com].
